@@ -159,16 +159,20 @@
 		);
 	}
 	$t_finish = microtime();
+		
+	/*
+	I was originally going to do it md5 style and have a $_GET['md5'] but that takes time to calculate
+	hashes and did not want to have it generated any files
+	*/
+		
 	if(!$mode||!file_exists($mode)) { ?>
 		<div class="top-bar">
 			<p><strong>Filenames</strong> are truncated to the first 25 characters. File listing generated in <?=($t_finish-$t_start) ?> ms
 		</div>
+
 		<div class="grid-container">
 <?php foreach($files as $file) { ?>
-			/*
-			I was originally going to do it md5 style and have a $_GET['md5'] but that takes time to calculate
-			hashes and did not want to have it generated any files
-			*/
+
 					<a class="grid-item" href="/index.php?f=<?=$file['path'] ?>" title="<?=$file['path'] ?>">
 						<p><?=$file['shortname'] ?></p>
 						<p>swf - <?=$file['size'] ?></p>

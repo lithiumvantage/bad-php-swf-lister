@@ -142,6 +142,8 @@
 	<body>
 <?php
 	$mode = cleanFilename($_GET['f']);
+		// never actually use this on a live webserver. This is NOT how to sanitize input!!!
+		// I will not be responsible if you are h4xed or heckered.
 	$dir = "./"; $w = "100%"; $h = "100%";
 	$ext = "swf";
 	$exts = [];
@@ -163,6 +165,10 @@
 		</div>
 		<div class="grid-container">
 <?php foreach($files as $file) { ?>
+			/*
+			I was originally going to do it md5 style and have a $_GET['md5'] but that takes time to calculate
+			hashes and did not want to have it generated any files
+			*/
 					<a class="grid-item" href="/index.php?f=<?=$file['path'] ?>" title="<?=$file['path'] ?>">
 						<p><?=$file['shortname'] ?></p>
 						<p>swf - <?=$file['size'] ?></p>
